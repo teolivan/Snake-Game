@@ -74,12 +74,115 @@ namespace Snake_Game
 
         private void GameTimerEvent(object sender, EventArgs e)
         {
+            //setting directions
 
+            if (goLeft) { 
+            Settings.directions = "left";
+            }
+            if (goRight)
+            {
+                Settings.directions = "right";
+            }
+            if (goDown)
+            {
+                Settings.directions = "down";
+            }
+            if (goUp)
+            {
+                Settings.directions = "up";
+            }
+
+            //end of directions 
+
+            for (int i = Snake.Count -1; i >= 0; i--) {
+
+                if (i == 0)
+                {
+
+                    switch (Settings.directions)
+                    {
+                        case "left":
+                            Snake[i].X--;
+                            break;
+                        case "right":
+                            Snake[i].X++;
+                            break;
+                        case "up":
+                            Snake[i].Y--;
+                            break;
+                        case "down":
+                            Snake[i].Y++;
+                            break;
+                    }
+
+                    if (Snake[i].X < 0)
+                    {
+                        Snake[i].X = maxWidth;
+                    }
+
+                    if (Snake[i].X > maxWidth)
+                    {
+                        Snake[i].X = 0;
+                    }
+
+                    if (Snake[i].Y < 0)
+                    {
+                        Snake[i].Y = maxHeight;
+                    }
+
+                    if (Snake[i].Y > maxHeight)
+                    {
+                        Snake[i].Y = 0;
+                    }
+
+                    if (Snake[i].X == food.X && Snake[i].Y == food.Y) 
+                    {
+                        EatFood();
+                    }
+
+                }
+                else 
+                {
+                    Snake[i].X = Snake[i - 1].X;
+                    Snake[i].Y = Snake[i - 1].Y;
+                }
+            }
+
+            gamebox.Invalidate();
         }
 
         private void UpdatePictureBox(object sender, PaintEventArgs e)
         {
+            Graphics canvas = e.Graphics;
 
+            Brush snakeColor;
+
+            for (int i = 0; i < Snake.Count; i++) {
+
+                if (i == 0)
+                {
+                    snakeColor = Brushes.Black;
+
+                }
+                else {
+                    snakeColor = Brushes.DarkGreen;
+                }
+
+                canvas.FillEllipse(snakeColor, new Rectangle
+                    (
+                        Snake[i].X * Settings.Width,
+                        Snake[i].Y * Settings.Height,
+                        Settings.Width, Settings.Height
+                    )) ;
+            }
+
+
+            canvas.FillEllipse(Brushes.DarkRed, new Rectangle
+                   (
+                       food.X * Settings.Width,
+                       food.Y * Settings.Height,
+                       Settings.Width, Settings.Height
+                   ));
         }
 
         private void RestartGame()
@@ -88,10 +191,40 @@ namespace Snake_Game
             maxHeight = gamebox.Height / Settings.Height - 1;
 
             Snake.Clear();
+
+            startbtn.Enabled = false;
+            capturebtn.Enabled = false;
+            score = 0;
+            txtScore.Text = "Score: " + score;
+
+            Circle head = new Circle { X = 10, Y = 5 };
+            Snake.Add(head); //adding head part of the snake to list 
+
+            for (int i = 0; i < 10; i++) {
+                Circle body = new Circle();
+                Snake.Add(body);
+            }
+
+            food = new Circle { X = rand.Next(2,maxWidth), Y = rand.Next(2, maxHeight) };
+
+            gameTimer.Start();
         }
 
         private void EatFood()
-        { 
+        {
+            score += 1;
+            txtScore.Text = "Score: " + score;
+
+            Circle body = new Circle
+            {
+                X = Snake[Snake.Count - 1].X,
+                Y = Snake[Snake.Count - 1].Y
+            };
+
+            Snake.Add(body);
+
+            food = new Circle { X = rand.Next(2, maxWidth), Y = rand.Next(2, maxHeight) };
+
 
         }
 
