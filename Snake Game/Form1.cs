@@ -1,5 +1,7 @@
 using System.Configuration;
 
+using System.Drawing.Imaging; //add this for jpg compressor
+
 namespace Snake_Game
 {
     public partial class Form1 : Form
@@ -69,6 +71,32 @@ namespace Snake_Game
 
         private void TakeSnapShot(object sender, EventArgs e)
         {
+            Label caption = new Label();
+            caption.Text = "I scored " + score + " and my highscore is " + highScore + " on the Snake Game";
+            caption.Font = new Font("MS PGothic", 12, FontStyle.Bold);
+            caption.ForeColor = Color.White;
+            caption.AutoSize = false;
+            caption.Width = gamebox.Width;
+            caption.Height = 30;
+            caption.TextAlign = ContentAlignment.MiddleCenter;
+            gamebox.Controls.Add(caption);
+
+            SaveFileDialog dialog = new SaveFileDialog();
+
+            dialog.FileName = "Snake Game Snapshot";
+            dialog.DefaultExt = "jpg";
+            dialog.Filter = "JPG Image File | *.jpg";
+            dialog.ValidateNames = true;
+
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                int width = Convert.ToInt32(gamebox.Width);
+                int height = Convert.ToInt32(gamebox.Height);
+                Bitmap bmp = new Bitmap(width, height);
+                gamebox.DrawToBitmap(bmp, new Rectangle(0,0,width,height));
+                bmp.Save(dialog.FileName, ImageFormat.Jpeg);
+                gamebox.Controls.Remove(caption);
+            }
 
         }
 
