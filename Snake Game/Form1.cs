@@ -140,6 +140,14 @@ namespace Snake_Game
                         EatFood();
                     }
 
+                    for (int j = 1; j < Snake.Count; j++) 
+                    {
+                        if (Snake[i].X == Snake[j].X && Snake[i].Y == Snake[j].Y) 
+                        { 
+                            GameOver();
+                        }
+                    } 
+
                 }
                 else 
                 {
@@ -230,6 +238,18 @@ namespace Snake_Game
 
         private void GameOver() 
         {
+            gameTimer.Stop();
+            startbtn.Enabled = true;
+            capturebtn.Enabled = true;
+
+            if (score > highScore)
+            { 
+                highScore = score;  
+
+                txtHighScore.Text = "Highscore: " + Environment.NewLine + highScore;
+                txtHighScore.ForeColor = Color.Maroon;
+                txtHighScore.TextAlign = ContentAlignment.MiddleCenter;
+            }
 
         }
     }
