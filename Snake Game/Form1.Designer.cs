@@ -30,11 +30,13 @@
         {
             this.startbtn = new System.Windows.Forms.Button();
             this.capturebtn = new System.Windows.Forms.Button();
+            this.gamebox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.gamebox)).BeginInit();
             this.SuspendLayout();
             // 
             // startbtn
             // 
-            this.startbtn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.startbtn.BackColor = System.Drawing.Color.LightBlue;
             this.startbtn.Font = new System.Drawing.Font("MS Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.startbtn.Location = new System.Drawing.Point(628, 12);
             this.startbtn.Name = "startbtn";
@@ -45,7 +47,7 @@
             // 
             // capturebtn
             // 
-            this.capturebtn.BackColor = System.Drawing.SystemColors.Info;
+            this.capturebtn.BackColor = System.Drawing.Color.SkyBlue;
             this.capturebtn.Font = new System.Drawing.Font("MS PGothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.capturebtn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.capturebtn.Location = new System.Drawing.Point(628, 60);
@@ -55,15 +57,26 @@
             this.capturebtn.Text = "Capture the moment";
             this.capturebtn.UseVisualStyleBackColor = false;
             // 
+            // gamebox
+            // 
+            this.gamebox.BackColor = System.Drawing.Color.SteelBlue;
+            this.gamebox.Location = new System.Drawing.Point(25, 12);
+            this.gamebox.Name = "gamebox";
+            this.gamebox.Size = new System.Drawing.Size(580, 680);
+            this.gamebox.TabIndex = 2;
+            this.gamebox.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(748, 725);
+            this.Controls.Add(this.gamebox);
             this.Controls.Add(this.capturebtn);
             this.Controls.Add(this.startbtn);
             this.Name = "Form1";
             this.Text = "Snake Game";
+            ((System.ComponentModel.ISupportInitialize)(this.gamebox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -72,5 +85,6 @@
 
         private Button startbtn;
         private Button capturebtn;
+        private PictureBox gamebox;
     }
 }
