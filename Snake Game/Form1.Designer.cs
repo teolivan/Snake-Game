@@ -28,12 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.startbtn = new System.Windows.Forms.Button();
+            this.capturebtn = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // startbtn
+            // 
+            this.startbtn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.startbtn.Font = new System.Drawing.Font("MS Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.startbtn.Location = new System.Drawing.Point(628, 12);
+            this.startbtn.Name = "startbtn";
+            this.startbtn.Size = new System.Drawing.Size(92, 42);
+            this.startbtn.TabIndex = 0;
+            this.startbtn.Text = "START";
+            this.startbtn.UseVisualStyleBackColor = false;
+            // 
+            // capturebtn
+            // 
+            this.capturebtn.BackColor = System.Drawing.SystemColors.Info;
+            this.capturebtn.Font = new System.Drawing.Font("MS PGothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.capturebtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.capturebtn.Location = new System.Drawing.Point(628, 60);
+            this.capturebtn.Name = "capturebtn";
+            this.capturebtn.Size = new System.Drawing.Size(92, 42);
+            this.capturebtn.TabIndex = 1;
+            this.capturebtn.Text = "Capture the moment";
+            this.capturebtn.UseVisualStyleBackColor = false;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(748, 725);
+            this.Controls.Add(this.capturebtn);
+            this.Controls.Add(this.startbtn);
+            this.Name = "Form1";
+            this.Text = "Snake Game";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Button startbtn;
+        private Button capturebtn;
     }
 }
