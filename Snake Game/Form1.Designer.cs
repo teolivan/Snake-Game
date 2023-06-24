@@ -48,6 +48,7 @@
             this.startbtn.TabIndex = 0;
             this.startbtn.Text = "START";
             this.startbtn.UseVisualStyleBackColor = false;
+            this.startbtn.Click += new System.EventHandler(this.StartGame);
             // 
             // capturebtn
             // 
@@ -60,6 +61,7 @@
             this.capturebtn.TabIndex = 1;
             this.capturebtn.Text = "Capture the moment";
             this.capturebtn.UseVisualStyleBackColor = false;
+            this.capturebtn.Click += new System.EventHandler(this.TakeSnapShot);
             // 
             // gamebox
             // 
@@ -69,6 +71,7 @@
             this.gamebox.Size = new System.Drawing.Size(580, 680);
             this.gamebox.TabIndex = 2;
             this.gamebox.TabStop = false;
+            this.gamebox.Paint += new System.Windows.Forms.PaintEventHandler(this.UpdatePictureBox);
             // 
             // txtScore
             // 
@@ -93,6 +96,7 @@
             // gameTimer
             // 
             this.gameTimer.Interval = 40;
+            this.gameTimer.Tick += new System.EventHandler(this.GameTimerEvent);
             // 
             // Form1
             // 
@@ -106,6 +110,8 @@
             this.Controls.Add(this.startbtn);
             this.Name = "Form1";
             this.Text = "Snake Game";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
             ((System.ComponentModel.ISupportInitialize)(this.gamebox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
