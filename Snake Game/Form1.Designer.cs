@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.startbtn = new System.Windows.Forms.Button();
             this.capturebtn = new System.Windows.Forms.Button();
             this.gamebox = new System.Windows.Forms.PictureBox();
             this.txtScore = new System.Windows.Forms.Label();
             this.txtHighScore = new System.Windows.Forms.Label();
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gamebox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,6 +90,10 @@
             this.txtHighScore.TabIndex = 4;
             this.txtHighScore.Text = "HighScore: 0";
             // 
+            // gameTimer
+            // 
+            this.gameTimer.Interval = 40;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -113,5 +119,6 @@
         private PictureBox gamebox;
         private Label txtScore;
         private Label txtHighScore;
+        private System.Windows.Forms.Timer gameTimer;
     }
 }
